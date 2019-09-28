@@ -1,12 +1,18 @@
 version: "3.1"
 
 services:
+  web:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
   db:
     container_name: mongoDB
     image: mongo:latest
     restart: always
     volumes:
-      - ./statement:/data/db
+      - ./data:/data/db
     environment:
       - MONGO_INITDB_DATABASE= Statement
     ports:
