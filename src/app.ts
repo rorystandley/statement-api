@@ -2,19 +2,22 @@ import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Controller } from "./main.controller";
+import mongoose from 'mongoose';
+import { MONGO_URL } from "./constants/statement.constants";
 
 class App {
 	public app: Application;
 
 	//declaring our controller
-	public spendingController: Controller;
+	public statementController: Controller;
 
 	constructor() {
 		this.app = express();
 		this.setConfig();
+		this.setMongoConfig();
 
 		//Creating and assigning a new instance of our controller
-		this.spendingController = new Controller( this.app );
+		this.statementController = new Controller( this.app );
 	}
 
 	private setConfig() {
@@ -26,6 +29,14 @@ class App {
 
 		//Enables cors
 		this.app.use( cors() );
+	}
+
+	//Connecting to our MongoDB database
+	private setMongoConfig() {
+		mongoose.Promise = global.Promise;
+		mongoose.connect( MONGO_URL, {
+			useNewUrlParser: true
+		} );
 	}
 }
 
