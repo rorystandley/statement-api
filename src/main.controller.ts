@@ -15,6 +15,7 @@ export class Controller {
 		this.app.route( '/statements' ).get( this._statementService.getAllStatements );
 		this.app.route( '/statement' ).post( this._statementService.addNewStatement );
 		this.app.route( '/statement/:id' )
+			.get( this._statementService.getStatement )
 			.delete( this._statementService.deleteStatement )
 			.put( this._statementService.updateStatement );
 	}

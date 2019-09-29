@@ -8,9 +8,18 @@ export class StatementService {
 		return res.status( 200 ).send( WELCOME_MESSAGE );
 	}
 
-	//Getting data from the db
 	public getAllStatements( req: Request, res: Response ) {
 		Statement.find( {}, ( error: Error, spending: MongooseDocument ) => {
+			if ( error ) {
+				res.send( error );
+			}
+			res.json( spending );
+		} );
+	}
+
+	public getStatement( req: Request, res: Response ) {
+		const statementId = req.params.id;
+		Statement.find( { _id: statementId }, ( error: Error, spending: MongooseDocument ) => {
 			if ( error ) {
 				res.send( error );
 			}
@@ -28,30 +37,30 @@ export class StatementService {
 		} );
 	}
 
-	public deleteStatement(req: Request, res: Response) {
+	public deleteStatement( req: Request, res: Response ) {
 		const statementId = req.params.id;
-		Statement.findByIdAndDelete(statementId, (error: Error, deleted: any) => {
-			if (error) {
-				res.send(error);
+		Statement.findByIdAndDelete( statementId, ( error: Error, deleted: any ) => {
+			if ( error ) {
+				res.send( error );
 			}
 			const message = deleted ? 'Deleted successfully' : 'Statement not found :(';
-			res.send(message);
-		});
+			res.send( message );
+		} );
 	}
 
-	public updateStatement(req: Request, res: Response) {
+	public updateStatement( req: Request, res: Response ) {
 		const statementId = req.params.id;
 		Statement.findByIdAndUpdate(
 			statementId,
 			req.body,
-			(error: Error, pokemon: any) => {
-				if (error) {
-					res.send(error);
+			( error: Error, pokemon: any ) => {
+				if ( error ) {
+					res.send( error );
 				}
 				const message = pokemon
 					? 'Updated successfully'
 					: 'Statement not found :(';
-				res.send(message);
+				res.send( message );
 			}
 		);
 	}
