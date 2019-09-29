@@ -56,6 +56,22 @@ curl -X POST \
 }'
 ```
 
+### Get Statement
+
+This endpoint will allow you to retrieve a statement using the id.
+
+```$xslt
+curl -X GET \
+  http://localhost:8080/statement/5d8fb08cf1c29e00123e46b1 \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 157' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:8080' \
+````
+
 ### Update Statement
 
 This endpoint will allow you to update an existing statement using the id.
