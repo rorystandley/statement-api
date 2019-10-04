@@ -43,8 +43,7 @@ export class StatementService {
 			if ( error ) {
 				res.send( error );
 			}
-			const message = deleted ? 'Deleted successfully' : 'Statement not found :(';
-			res.send( message );
+			res.send();
 		} );
 	}
 
