@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Controller } from "./main.controller";
 import mongoose from 'mongoose';
-import { MONGO_URL } from "./constants/statement.constants";
+import { MONGO_URL } from "./constants/logging.constants";
 
 class App {
 	public app: Application;

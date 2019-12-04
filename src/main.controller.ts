@@ -1,22 +1,19 @@
 import { Application } from 'express';
-import { StatementService } from "./services/statement.service";
+import { LoggingService } from "./services/logging.service";
 
 export class Controller {
 
-	private _statementService: StatementService;
+	private _loggingService: LoggingService;
 
 	constructor( private app: Application ) {
-		this._statementService = new StatementService();
+		this._loggingService = new LoggingService();
 		this.routes();
 	}
 
 	public routes() {
-		this.app.route( '/' ).get( this._statementService.welcomeMessage );
-		this.app.route( '/statements' ).get( this._statementService.getAllStatements );
-		this.app.route( '/statement' ).post( this._statementService.addNewStatement );
-		this.app.route( '/statement/:id' )
-			.get( this._statementService.getStatement )
-			.delete( this._statementService.deleteStatement )
-			.put( this._statementService.updateStatement );
+		this.app.route( '/joinx/:tenant/:namespace/:uuid' )
+			.get( this._loggingService.getLogs )
+			.post( this._loggingService.addNewLog )
+			.delete( this._loggingService.deleteLogs );
 	}
 }
