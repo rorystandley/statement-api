@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm i -g typescript && ts-node ./src/server.ts",
+    "start": "sudo npm i -g typescript && ts-node ./src/server.ts",
     "watch": "nodemon"
   },
   "keywords": [],
